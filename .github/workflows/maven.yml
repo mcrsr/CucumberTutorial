@@ -9,10 +9,14 @@
 name: Java CI with Maven
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags' 
 
 jobs:
   build:
@@ -28,4 +32,11 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: |
+        echo "export LOG_LEVEL=${{ github.event.inputs.logLevel }}" >> $GITHUB_ENV
+        echo "export TAGS=${{ github.event.inputs.tags }}" >> $GITHUB_ENV
+        mvn -B package --file pom.xml
+
+      env:
+        LOG_LEVEL: ${{ env.LOG_LEVEL }}
+        TAGS: ${{ env.TAGS }}
