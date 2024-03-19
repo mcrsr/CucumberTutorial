@@ -9,6 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 import java.time.Duration;
 
@@ -27,6 +30,25 @@ public class OrangeHRMSteps {
         // driver.manage().window().maximize();
         // driver.get("https://opensource-demo.orangehrmlive.com/");
         System.out.println("Hello World!");
+        Properties properties = new Properties();
+        try {
+            // Load properties from the file
+            FileInputStream input = new FileInputStream("src/test/resources/features/data.properties");
+            properties.load(input);
+
+            // Retrieve values by keys
+            String username = properties.getProperty("username");
+            String password = properties.getProperty("password");
+
+            // Use the values
+            System.out.println("Username: " + username);
+            System.out.println("Password: " + password);
+
+            // Close the input stream
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @When("user enters the credentials {string} and {string}")
     public void user_enters_the_credentials_and(String username, String password) {
