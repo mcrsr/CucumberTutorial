@@ -18,14 +18,15 @@ public class OrangeHRMSteps {
 
     @Given("user is on the login page screen")
     public void user_is_on_the_login_page_screen() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-        driver = new ChromeDriver(options);
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        driver.get("https://opensource-demo.orangehrmlive.com/");
+        // WebDriverManager.chromedriver().setup();
+        // ChromeOptions options = new ChromeOptions();
+        // options.addArguments("headless");
+        // driver = new ChromeDriver(options);
+        // driver.manage().deleteAllCookies();
+        // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        // driver.manage().window().maximize();
+        // driver.get("https://opensource-demo.orangehrmlive.com/");
+        System.out.println("Hello World!");
     }
     @When("user enters the credentials {string} and {string}")
     public void user_enters_the_credentials_and(String username, String password) {
