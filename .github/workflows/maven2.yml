@@ -46,15 +46,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Set up environment
-      run: |
-        echo "export LOG_LEVEL=${{ github.event.inputs.logLevel }}" >> $GITHUB_ENV
-        echo "export TAGS=${{ github.event.inputs.tags }}" >> $GITHUB_ENV
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Print name
       run: echo "Hello $NAME. and $LOG_LEVE"
       env:
         NAME: 'Snyk Demo'
-        LOG_LEVEL: ${{ GITHUB_ENV }}
-        TAGS: ${{ TAGS }}
+        LOG_LEVEL: ${{ github.event.inputs.logLevel }}
+        TAGS: ${{ github.event.inputs.tags }}
