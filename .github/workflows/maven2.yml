@@ -32,6 +32,14 @@ on:
         description: 'Environment to run tests against'
         type: environment
         required: false
+      username:
+        description: 'Name of the user'
+        required: true
+        type: string
+      password:
+        description: 'Password of the user'
+        required: true
+        type: string
 
 jobs:
   build:
