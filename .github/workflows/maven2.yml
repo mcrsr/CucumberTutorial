@@ -54,13 +54,13 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    - name: Print name
-      run: echo "Hello $NAME. and $LOG_LEVEL"
       env:
         NAME: 'Snyk Demo'
         LOG_LEVEL: ${{ github.event.inputs.logLevel }}
         TAGS: ${{ github.event.inputs.tags }}
         USERNAME: ${{ github.event.inputs.username }}
         PASSWORD: ${{ github.event.inputs.password }}
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    - name: Print name
+      run: echo "Hello $NAME. and $LOG_LEVEL"
