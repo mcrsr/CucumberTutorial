@@ -45,14 +45,14 @@ public class OrangeHRMSteps {
             System.out.println("Password: " + password);
             String logLevel = System.getenv("LOG_LEVEL");
             String tags = System.getenv("TAGS");
-            String username = System.getenv("USERNAME");
-            String password = System.getenv("PASSWORD");
+            String newusername = System.getenv("USERNAME");
+            String newpassword = System.getenv("PASSWORD");
             
             
         System.out.println("Log level: " + logLevel);
         System.out.println("Tags: " + tags);
-            System.out.println("username: " + username);
-            System.out.println("password: " + password);
+            System.out.println("new username: " + newusername);
+            System.out.println("new password: " + newpassword);
             // Close the input stream
             input.close();
         } catch (IOException e) {
