@@ -1,44 +1,32 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Java CI with Maven
 
+env:
+  NAME: 'Snyk Demo'
+
 on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning'
-      tags:
-        description: 'Test scenario tags' 
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
+    env:
+        JAVA_VERSION: '21'
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 11
+    - name: Set up JDK ${{env.JAVA_VERSION}}
       uses: actions/setup-java@v3
       with:
-        java-version: '11'
+        java-version: ${{env.JAVA_VERSION}}
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: |
-        echo "export LOG_LEVEL=${{ github.event.inputs.logLevel }}" >> $GITHUB_ENV
-        echo "export TAGS=${{ github.event.inputs.tags }}" >> $GITHUB_ENV
-        mvn -B package --file pom.xml
-    - name: Debug LOG_LEVEL
-      run: echo "LOG_LEVEL: $LOG_LEVEL"
-      
+      run: mvn -B package --file pom.xml
+    - name: Print name
+      run: echo "Hello $NAME. $BUILD. Using Java Version $JAVA_VERSION"
       env:
-        LOG_LEVEL: ${{ env.LOG_LEVEL }}
-        TAGS: ${{ env.TAGS }}
+        BUILD: 'We are currently running the Build job'
