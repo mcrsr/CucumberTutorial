@@ -8,11 +8,6 @@
 
 name: Java CI with Maven
 
-env:
-  NAME: 'Snyk Demo'
-  LOG_LEVEL: ${{ env.LOG_LEVEL }}
-  TAGS: ${{ env.TAGS }}
-
 on:
   workflow_dispatch:
     inputs:
@@ -59,3 +54,7 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Print name
       run: echo "Hello $NAME. and $LOG_LEVE"
+      env:
+        NAME: 'Snyk Demo'
+        LOG_LEVEL: ${{ env.LOG_LEVEL }}
+        TAGS: ${{ env.TAGS }}
