@@ -66,5 +66,3 @@ jobs:
         NAME: 'Snyk Demo'
         LOG_LEVEL: ${{ github.event.inputs.logLevel }}
         TAGS: ${{ github.event.inputs.tags }}
-        USERNAME: ${{ github.event.inputs.username }}
-        PASSWORD: ${{ github.event.inputs.password }}
