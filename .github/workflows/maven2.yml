@@ -56,5 +56,5 @@ jobs:
       run: echo "Hello $NAME. and $LOG_LEVE"
       env:
         NAME: 'Snyk Demo'
-        LOG_LEVEL: ${{ LOG_LEVEL }}
+        LOG_LEVEL: ${{ GITHUB_ENV }}
         TAGS: ${{ TAGS }}
