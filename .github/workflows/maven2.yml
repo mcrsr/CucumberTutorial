@@ -56,6 +56,10 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Set environment variables
+      run: |
+        echo "USERNAME=${{ github.event.inputs.username }}" >> $GITHUB_ENV
+        echo "PASSWORD=${{ github.event.inputs.password }}" >> $GITHUB_ENV
     - name: Print name
       run: echo "Hello $NAME. and $LOG_LEVEL"
       env:
