@@ -49,7 +49,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Print name
-      run: echo "Hello $NAME. and $LOG_LEVE"
+      run: echo "Hello $NAME. and $LOG_LEVEL"
       env:
         NAME: 'Snyk Demo'
         LOG_LEVEL: ${{ github.event.inputs.logLevel }}
